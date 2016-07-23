@@ -217,19 +217,16 @@ function create_config( )
     sudo_users = {172575556},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[Blaster v4
-    
-    
+Anadvance Administration bot based on yagop/telegram-bot  
 
-    
-    admin : 
-    
-    @nethall
-    
-    
-    channel : 
-    
-    
-    @fucker_team ❤️
+https://github.com/nova-dev-man-egale/blaster
+  
+ Our team! 
+@fucker_Team 
+  
+Special thanks to: 
+All my Friend :D
+
 ]],
     help_text_realm = [[
 Realm Commands:
