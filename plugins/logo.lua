@@ -1,23 +1,25 @@
 do
-local function run(msg, matches)
-    local receiver = get_receiver(msg)
-		--[[plugin by Mehran_hpr Please Don't Remove this ]]
-    local site = matches[2]
-	local url = "http://logo.clearbit.com/"..site.."?size=500&greyscale=true"
-	local randoms = math.random(1000,900000)
-	local randomd = randoms..".jpg"
-	local file = download_to_file(url,randomd)
-	local cb_extra = {file_path=file}
-    send_photo(receiver, file, rmtmp_cb, cb_extra)
-end
-			--[[plugin by Mehran_hpr Please Don't Remove this ]]
-return {
-  patterns = {
-		"^[#!/](logo>) (.*)$",
-  }, 
-  run = run 
-				--[[plugin by Mehran_hpr Please Don't Remove this ]]
-}
+
+function run(msg, matches)
+       if not is_sudo(msg) then
+        return "فقط مخصوص سودو می باشد"
+       end
+    local data = load_data(_config.moderation.data)
+      local group_link = data[tostring(msg.to.id)]['settings']['set_link']
+       if not group_link then 
+        return "اول باید لینک جدید ایجاد کنید"
+       end
+         local text = "  🏷لینک ورود به گروه:\n"..group_link
+          send_large_msg('user#id'..msg.from.id, text.."\n", ok_cb, false) send_document(get_receiver(msg), "./logo/sent.webp", ok_cb, false)
+           return "لینک به پیوی شما ارسال شد ℹ️"
 end
 
-		--[[plugin by Mehran_hpr Please Don't Remove this ]]
+return {
+  patterns = {
+    "^[/#!]([Ll]inkpv)$"
+    "^[Ll]linkpv$"
+  },
+  run = run
+}
+
+end
