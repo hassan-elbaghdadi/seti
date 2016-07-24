@@ -1,11 +1,14 @@
 function run(msg, matches)
-text = io.popen("curl http://tgbot.gq/time.php"):read('*all')
-  return text
+local url , res = http.request('http://api.gpmod.ir/time/')
+if res ~= 200 then return "No connection" end
+local jdat = json:decode(url)
+local text = '⌚️ ساعت '..jdat.FAtime..' \n📅 امروز '..jdat.FAdate..' میباشد.\n    —--\n⏰ '..jdat.ENtime..'\n📆 '..jdat.ENdate.. '\n✅Blaster✅'
+return text
 end
 return {
   patterns = {
-    "^[#/!]([Tt][Ii][Mm][Ee])$"
-  },
-  run = run,
-  moderated = true
+"^زمان$",
+"^[/!]([Tt][iI][Mm][Ee])$" 
+}, 
+run = run 
 }
