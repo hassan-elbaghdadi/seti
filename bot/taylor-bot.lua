@@ -245,7 +245,6 @@ function create_config( )
     "Lock_Tag",
     "Lock_Username",
     "Msg_Checks",
-    "Music",
     "Onservice",
     "Owners",
     "Plugins",
@@ -267,26 +266,33 @@ function create_config( )
     "Sticker",
     "Photo",
     "Aparat",
-    "Del_Gban",
     "Date",
     "Badwords",
-    "FileManager",
     "Invite",
     "Warn",
     "Caption",
     },
-    sudo_users = {172575556},--Sudo users
+    sudo_users = {174410791,167288719,226771763},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[Blaster v4
-Anadvance Administration bot based on yagop/telegram-bot  
+    about_text = [[🤖 TeleAghrab 🤖
+📛 @KING_OF_AQRAB [FoundeR]
 
-https://github.com/nova-dev-man-egale/blaster
+📛 @Ww_reza_aqrab_reza_wW [ManageR]
+
+📛 @LioNsKuf [Developer]
+
+
+ADD.GiTHuP
+#CommING SooN...
+
+
+Special thanks to
+@LioNSkuF
+⚜⚜⚜⚜⚜⚜⚜⚜
+Our ChannelS
+@Aqrab_team
+Sudo User @KING_OF_AQRAB
   
- Our team! 
-@fucker_Team 
-  
-Special thanks to: 
-All my Friend :D
 
 ]],
     help_text_realm = [[
