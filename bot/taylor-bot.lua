@@ -272,12 +272,10 @@ function create_config( )
     "Warn",
     "Caption",
     },
-    sudo_users = {174410791,167288719,226771763},--Sudo users
+    sudo_users = {226771763},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[🤖 TeleAghrab 🤖
-📛 @KING_OF_AQRAB [FoundeR]
 
-📛 @Ww_reza_aqrab_reza_wW [ManageR]
 
 📛 @LioNsKuf [Developer]
 
@@ -287,11 +285,11 @@ ADD.GiTHuP
 
 
 Special thanks to
-@LioNSkuF
+all my friend
 ⚜⚜⚜⚜⚜⚜⚜⚜
 Our ChannelS
-@Aqrab_team
-Sudo User @KING_OF_AQRAB
+@Blaster_Team
+Sudo User @LionSkuf
   
 
 ]],
