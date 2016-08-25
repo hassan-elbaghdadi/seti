@@ -1033,7 +1033,7 @@ function show_supergroup_settingsmod(msg, target)
   local gp_type = data[tostring(msg.to.id)]['group_type']
   
   local settings = data[tostring(target)]['settings']
-  local text = "\n⚙SuperGroup settings⚙:\n____________________\n💠Lock links : "..settings.lock_link.."\n💠Lock contacts: "..settings.lock_contacts.."\n💠Lock flood: "..settings.flood.."\n💠Flood sensitivity : "..NUM_MSG_MAX.."\n💠Lock spam: "..settings.lock_spam.."\n💠Lock Arabic: "..settings.lock_arabic.."\n💠Lock Member: "..settings.lock_member.."\n💠Lock RTL: "..settings.lock_rtl.."\n💠Lock Tgservice: "..settings.lock_tgservice.."\n💠Lock sticker: "..settings.lock_sticker.."\n💠Lock tag: "..settings.tag.."\n💠Lock emoji: "..settings.emoji.."\n💠Lock english: "..settings.english.."\n💠Lock Forward: "..settings.fwd.."\n💠Lock reply: "..settings.reply.."\n💠Lock join: "..settings.join.."\n💠Lock username: "..settings.username.."\n💠Lock media: "..settings.media.."\n💠Lock fosh: "..settings.fosh.."\n💠Lock leave: "..settings.leave.."\n💠Lock bots: "..bots_protection.."\n💠Lock operator: "..settings.operator.."\n____________________\n⚙Easy Sweet&Faster Switch⚙:️\n____________________\n💠 Switch Model Etehad: "..settings.etehad.."\n💠Lock all: "..settings.all.."\n____________________\nℹ️About Groupℹ️:️\n____________________\n💠 Group type: "..gp_type.."\n💠Public: "..settings.public.."\n💠Strict settings: "..settings.strict.."\n____________________\n💥Bot Version : 1.0 💥\n💥blaster Bot💥\n@aqrab_Team"
+  local text = "\n⚙SuperGroup settings⚙:\n____________________\n💠Lock links : "..settings.lock_link.."\n💠Lock contacts: "..settings.lock_contacts.."\n💠Lock flood: "..settings.flood.."\n💠Flood sensitivity : "..NUM_MSG_MAX.."\n💠Lock spam: "..settings.lock_spam.."\n💠Lock Arabic: "..settings.lock_arabic.."\n💠Lock Member: "..settings.lock_member.."\n💠Lock RTL: "..settings.lock_rtl.."\n💠Lock Tgservice: "..settings.lock_tgservice.."\n💠Lock sticker: "..settings.lock_sticker.."\n💠Lock tag: "..settings.tag.."\n💠Lock emoji: "..settings.emoji.."\n💠Lock english: "..settings.english.."\n💠Lock Forward: "..settings.fwd.."\n💠Lock reply: "..settings.reply.."\n💠Lock join: "..settings.join.."\n💠Lock username: "..settings.username.."\n💠Lock media: "..settings.media.."\n💠Lock fosh: "..settings.fosh.."\n💠Lock leave: "..settings.leave.."\n💠Lock bots: "..bots_protection.."\n💠Lock operator: "..settings.operator.."\n____________________\n⚙Easy Sweet&Faster Switch⚙:️\n____________________\n💠 Switch Model Etehad: "..settings.etehad.."\n💠Lock all: "..settings.all.."\n____________________\nℹ️About Groupℹ️:️\n____________________\n💠 Group type: "..gp_type.."\n💠Public: "..settings.public.."\n💠Strict settings: "..settings.strict.."\n____________________\n💥Bot Version : 1.0 💥\n💥blaster Bot💥\n By @Lionskuf \n@Blaster_Team"
   return text
 end
 
@@ -2628,7 +2628,7 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'help' and not is_owner(msg) then
-			text = "Message /superhelp to @king_aqrab in private for SuperGroup help"
+			text = "Message /superhelp to @Blaster_TG in private for SuperGroup help"
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'help' and is_owner(msg) then
 			local name_log = user_print_name(msg.from)
