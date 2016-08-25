@@ -222,6 +222,9 @@ function create_config( )
     "Arz",
     "Banhammer",
     "Broadcast",
+    "Music",
+    "mean",
+    "Fantasy_Writer",
     "Cpu",
     "Dictionary",
     "Fantasy_Writer",
@@ -248,9 +251,7 @@ function create_config( )
     "Onservice",
     "Owners",
     "Plugins",
-    "Remove_Plugin",
     "Rmsg",
-    "Serverinfo",
     "Set",
     "Set_Type",
     "Stats",
@@ -259,7 +260,6 @@ function create_config( )
     "Terminal",
     "TextSticker",
     "Time",
-    "Voice",
     "Weather",
     "Welcome",
     "Whitelist",
@@ -274,7 +274,7 @@ function create_config( )
     },
     sudo_users = {226771763},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[🤖 TeleAghrab 🤖
+    about_text = [[🤖 TeleBlaster 🤖
 
 
 📛 @LioNsKuf [Developer]
