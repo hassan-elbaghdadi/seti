@@ -28,22 +28,6 @@ function get_receiver(msg)
   end
 end
 
-function get_receiver_api(msg)
-  if msg.to.type == 'user' then
-    return msg.from.id
-  end
-  if msg.to.type == 'chat' then
-    return '-'..msg.to.peer_id
-  end
---TODO testing needed
--- if msg.to.type == 'encr_chat' then
---   return msg.to.print_name
--- end
-  if msg.to.type == 'channel' then
-    return '-100'..msg.to.id
-  end
-end
-
 function is_chat_msg( msg )
   if msg.to.type == 'chat' then
     return true
@@ -487,7 +471,7 @@ function send_large_msg_callback(cb_extra, success, result)
   local text_max = 4096
   local destination = cb_extra.destination
   local text = cb_extra.text
-  if not text  then
+  if not text or type(text) == 'boolean' then
     return
   end
   local text_len = string.len(text)
@@ -1135,6 +1119,10 @@ end
 
 -- /id by reply
 function get_message_callback_id(extra, success, result)
+	if type(result) == 'boolean' then
+		print('Old message :(')
+		return false
+	end
 	if result.to.type == 'chat' then
 		local chat = 'chat#id'..result.to.peer_id
 		send_large_msg(chat, result.from.peer_id)
@@ -1145,6 +1133,10 @@ end
 
 -- kick by reply for mods and owner
 function Kick_by_reply(extra, success, result)
+	if type(result) == 'boolean' then
+		print('Old message :(')
+		return false
+	end
 	if result.to.type == 'chat' or result.to.type == 'channel' then
 		local chat = 'chat#id'..result.to.peer_id
 	if tonumber(result.from.peer_id) == tonumber(our_id) then -- Ignore bot
@@ -1162,7 +1154,10 @@ end
 
 -- Kick by reply for admins
 function Kick_by_reply_admins(extra, success, result)
-
+	if type(result) == 'boolean' then
+		print('Old message :(')
+		return false
+	end
 	if result.to.type == 'chat' or result.to.type == 'channel' then
 		local chat = 'chat#id'..result.to.peer_id
 		local channel = 'channel#id'..result.to.peer_id
@@ -1181,6 +1176,10 @@ end
 
 --Ban by reply for admins
 function ban_by_reply(extra, success, result)
+	if type(result) == 'boolean' then
+		print('Old message :(')
+		return false
+	end
 	if result.to.type == 'chat' or result.to.type == 'channel' then
 	local chat = 'chat#id'..result.to.peer_id
  	local channel = 'channel#id'..result.to.peer_id
@@ -1199,6 +1198,10 @@ end
 
 -- Ban by reply for admins
 function ban_by_reply_admins(extra, success, result)
+	if type(result) == 'boolean' then
+		print('Old message :(')
+		return false
+	end
 	if result.to.peer_type == 'chat' or result.to.peer_type == 'channel' then
 		local chat = 'chat#id'..result.to.peer_id
 		local channel = 'channel#id'..result.to.peer_id
@@ -1216,27 +1219,45 @@ function ban_by_reply_admins(extra, success, result)
 	end
 end
 
-function get_receiver_api(msg)
-  if msg.to.type == 'user' then
-    return msg.from.id
-  end
-  if msg.to.type == 'chat' then
-    return '-'..msg.to.id
-  end
-  if msg.to.type == 'channel' then
-    return '-100'..msg.to.id
+-- Unban by reply
+function unban_by_reply(extra, success, result)
+	if type(result) == 'boolean' then
+		print('Old message :(')
+		return false
+	end
+	if result.to.type == 'chat' or result.to.type == 'channel' then
+		local chat = 'chat#id'..result.to.peer_id
+		local channel = 'channel#id'..result.to.peer_id
+	if tonumber(result.from.peer_id) == tonumber(our_id) then -- Ignore bot
+		return
+	end
+		send_large_msg(chat, "User "..result.from.peer_id.." Unbanned")
+		-- Save on redis
+		local hash =  'banned:'..result.to.peer_id
+		redis:srem(hash, result.from.peer_id)
+	else
+		return
   end
 end
-function send_api_msg(msg, receiver, text, disable_web_page_preview, markdown)
-  local api_key ='234598152:AAG29znbxvmHlmi3iP927cXBDuNxTrps_gI'
-  local url_api = 'https://api.telegram.org/bot'..api_key
-      ..'/sendMessage?chat_id='..receiver..'&text='..URL.escape(text)
-  if disable_web_page_preview == true then
-    url_api = url_api..'&disable_web_page_preview=true'
-  end
-  if markdown == 'md' then
-    url_api = url_api..'&parse_mode=Markdown'
-  elseif markdown == 'html' then
-    url_api = url_api..'&parse_mode=HTML'
+function banall_by_reply(extra, success, result)
+	if type(result) == 'boolean' then
+		print('Old message :(')
+		return false
+	end
+	if result.to.type == 'chat' or result.to.type == 'channel' then
+		local chat = 'chat#id'..result.to.peer_id
+		local channel = 'channel#id'..result.to.peer_id
+	if tonumber(result.from.peer_id) == tonumber(our_id) then -- Ignore bot
+		return
+	end
+	if is_admin2(result.from.peer_id) then -- Ignore admins
+		return
+	end
+		local name = user_print_name(result.from)
+		banall_user(result.from.peer_id)
+		chat_del_user(chat, 'user#id'..result.from.peer_id, ok_cb, false)
+		send_large_msg(chat, "User "..name.."["..result.from.peer_id.."] globally banned")
+	else
+		return
   end
 end
